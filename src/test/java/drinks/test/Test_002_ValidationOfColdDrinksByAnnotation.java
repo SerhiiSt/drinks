@@ -54,7 +54,7 @@ public class Test_002_ValidationOfColdDrinksByAnnotation {
     public void testColdCocaCola() throws Exception {
         drinksOrgByAnnotation.testPage.openURL(appUrl);
         drinksOrgByAnnotation.testPage.changeIframe();
-        drinksOrgByAnnotation.testPage.selectDrinkTemperature(COLD);
+        drinksOrgByAnnotation.testPage.selectColdDrinkTemperature();
         drinksOrgByAnnotation.testPage.selectDrink(COCA_COLA);
         drinksOrgByAnnotation.testPage.validateChosenDrink("You have selected "+COCA_COLA+" drink which is "+COLD+"!");
 
@@ -64,7 +64,7 @@ public class Test_002_ValidationOfColdDrinksByAnnotation {
     public void testColdPepsi() throws Exception {
         drinksOrgByAnnotation.testPage.openURL(appUrl);
         drinksOrgByAnnotation.testPage.changeIframe();
-        drinksOrgByAnnotation.testPage.selectDrinkTemperature(COLD);
+        drinksOrgByAnnotation.testPage.selectColdDrinkTemperature();
         drinksOrgByAnnotation.testPage.selectDrink(PEPSI);
         drinksOrgByAnnotation.testPage.validateChosenDrink("You have selected "+PEPSI+" drink which is "+COLD+"!");
 
@@ -75,7 +75,7 @@ public class Test_002_ValidationOfColdDrinksByAnnotation {
     public void testColdIceTea() throws Exception {
         drinksOrgByAnnotation.testPage.openURL(appUrl);
         drinksOrgByAnnotation.testPage.changeIframe();
-        drinksOrgByAnnotation.testPage.selectDrinkTemperature(COLD);
+        drinksOrgByAnnotation.testPage.selectColdDrinkTemperature();
         drinksOrgByAnnotation.testPage.selectDrink(ICE_TEA);
         drinksOrgByAnnotation.testPage.validateChosenDrink("You have selected "+ICE_TEA+" drink which is "+COLD+"!");
 

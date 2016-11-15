@@ -29,16 +29,16 @@ public class TestPageByAnnotation {
     Logger log;
     WebDriverWait waitForCondition;
     @FindBy(
-            id="firstDropdown"
+            id = "firstDropdown"
     )
     WebElement drinkTemperature;
     @FindBy(
-            id="secondDropdown"
+            id = "secondDropdown"
     )
     WebElement drinks;
 
     @FindBy(
-        xpath = ".//*[@id='login-button']"
+            xpath = ".//*[@id='login-button']"
     )
     WebElement loginButton;
 
@@ -48,7 +48,7 @@ public class TestPageByAnnotation {
     WebElement emailField;
 
     @FindBy(
-            id ="login-password-field_"
+            id = "login-password-field_"
     )
     WebElement passwordField;
 
@@ -68,9 +68,10 @@ public class TestPageByAnnotation {
     WebElement iframeLocator;
 
     @FindBy(
-         id = "result"
+            id = "result"
     )
     WebElement result;
+
 
 
 
@@ -86,28 +87,48 @@ public class TestPageByAnnotation {
         this.driver.manage().deleteAllCookies();
     }
 
-   public void selectDrinkTemperature(String temperature) throws ClassNotFoundException, IOException, InstantiationException, IllegalAccessException {
+    public void selectDrinkTemperature(String temperature) throws ClassNotFoundException, IOException, InstantiationException, IllegalAccessException {
+
+         drinkTemperature.click();
+
+        WebElement select = driver.findElement(By.id("firstDropdown"));
+        List<WebElement> options = select.findElements(By.tagName("option"));
+        for (int i=1;i<options.size();i++) {
+            if (temperature.equals(options.get(i).getText()))
+
+                options.get(i).click();
+                options.get(i).click();
 
 
-       drinkTemperature.click();
-
-       WebElement select = driver.findElement(By.id("firstDropdown"));
-       List<WebElement> options = select.findElements(By.tagName("option"));
-       for (WebElement option : options) {
-           if(temperature.equals(option.getText()))
-
-               option.click();
-               option.click();
+        }
 
 
-       }
+    }
+    public void selectColdDrinkTemperature() throws ClassNotFoundException, IOException, InstantiationException, IllegalAccessException {
+
+        drinkTemperature.click();
+
+        WebElement select = driver.findElement(By.id("firstDropdown"));
+
+        List<WebElement> options = select.findElements(By.tagName("option"));
+        for (int i=1;i<options.size();i++) {
+
+            if ("Cold".equals(options.get(i).getText()))
 
 
-   }
+                options.get(i).click();
 
-    public void changeIframe(){
+
+        }
+
+
+    }
+
+
+
+    public void changeIframe() {
         waitForCondition.until(ExpectedConditions.invisibilityOfElementLocated(By.className("drink")));
-        WebElement iframe=driver.findElement(By.className("result-iframe"));
+        WebElement iframe = driver.findElement(By.className("result-iframe"));
         driver.switchTo().frame(iframe);
 
 
@@ -115,48 +136,50 @@ public class TestPageByAnnotation {
 
 
     public void selectDrink(String nameOfDrink) {
+        drinks.click();
         // This is variant with simple for loop
         WebElement select = driver.findElement(By.id("secondDropdown"));
         List<WebElement> options = select.findElements(By.tagName("option"));
-        for (int i = 0; i < options.size(); i++) {
+        for (int i = 1; i < options.size(); i++) {
             if (nameOfDrink.equals(options.get(i).getText()))
                 options.get(i).click();
-                options.get(i).click();
-            }
+
+
+        }
 
     }
 
 
-    public void validateChosenDrink(String chosenDrink){
+    public void validateChosenDrink(String chosenDrink) {
 
-        Assert.assertEquals(chosenDrink,result.getText());
+        Assert.assertEquals(chosenDrink, result.getText());
 
     }
 
 
-    public void clickOnLoginButton(){
+    public void clickOnLoginButton() {
         loginButton.click();
     }
 
-    public void inputEmailAddress(String email){
+    public void inputEmailAddress(String email) {
         emailField.clear();
         emailField.sendKeys(new CharSequence[]{email});
         log.info(email + "was inputed into emailField");
     }
 
-    public void inputPassword(String pass){
+    public void inputPassword(String pass) {
         passwordField.click();
         passwordField.sendKeys(new CharSequence[]{pass});
 
     }
 
-    public void clickLoginButton(){
+    public void clickLoginButton() {
         clickLoginButton.click();
 
     }
 
     public boolean isUserCreated() throws ClassNotFoundException, IllegalAccessException, InstantiationException, IOException {
-        if(this.isUserCreated.isDisplayed()) {
+        if (this.isUserCreated.isDisplayed()) {
             this.log.info("User has been created");
             return true;
         } else {
@@ -165,16 +188,6 @@ public class TestPageByAnnotation {
         }
     }
 
-    public void locateElement() throws InterruptedException {
-
-//        waitForCondition.until(ExpectedConditions.elementToBeSelected(By.cssSelector("html>body")));
-        waitForCondition.until(ExpectedConditions.invisibilityOfElementLocated(By.className("drink")));
-
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-
-
-        js.executeScript("document.querySelector('#firstDropdown');");
-    }
 
 
     public void openURL(String url) {
@@ -189,15 +202,15 @@ public class TestPageByAnnotation {
         log.debug("Quit from the browser");
     }
 
-    public void clearCache() throws Exception{
+    public void clearCache() throws Exception {
 
         Actions actions = new Actions(driver);
         actions.keyDown(Keys.COMMAND).keyDown(Keys.SHIFT).sendKeys("R");
 
     }
 
-    public void clearResults(){
 
-    }
+
+
 
 }

@@ -24,7 +24,6 @@ public class Test_001_ValidationOfHotDrinksByAnnotation {
     private static WebDriver driver;
     private static DrinksOrgByAnnotation drinksOrgByAnnotation;
     private static Logger log;
-    private static Map<String, String> data = new HashMap();
     private static String appUrl;
 
     public static final String COFFEE ="Coffee";
@@ -41,7 +40,6 @@ public class Test_001_ValidationOfHotDrinksByAnnotation {
         driver = new FirefoxDriver();
         drinksOrgByAnnotation = new DrinksOrgByAnnotation(driver);
         log = Logger.getLogger(Test_001_ValidationOfHotDrinksByAnnotation.class);
-        // data = ExcelDriver.getData("/src/main/resources/testData.xls", "Test_000_ValidationOfHotDrinksByDriver");
         appUrl = ConfigData.getCfgValue("Application_URL");
         driver.manage().timeouts().implicitlyWait(30L, TimeUnit.SECONDS);
 
@@ -60,6 +58,7 @@ public class Test_001_ValidationOfHotDrinksByAnnotation {
            drinksOrgByAnnotation.testPage.validateChosenDrink("You have selected "+COFFEE+" drink which is "+HOT+"!");
 
 
+
     }
     @Test
     public void testHotTea() throws Exception {
@@ -75,7 +74,7 @@ public class Test_001_ValidationOfHotDrinksByAnnotation {
 
     @After
     public  void stopTest() throws Exception {
-       // drinksOrgByAnnotation.testPage.locateElement();
+
         drinksOrgByAnnotation.testPage.clearCache();
         drinksOrgByAnnotation.testPage.quit();
     }
